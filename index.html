@@ -142,14 +142,15 @@
             line-height: 1.2;
         }
 
+        /* ИСПРАВЛЕНИЕ: Фиксируем ширину меняющегося слова, чтобы текст не прыгал */
         .home-content .slogan span {
             font-weight: bold;
             color: var(--orange-accent);
             margin-left: 10px;
             transition: color 0.5s ease;
             display: inline-block;
-            min-width: 150px;
-            text-align: left;
+            min-width: 260px; /* Достаточно места для самого длинного слова */
+            text-align: left; 
         }
 
         .btn-primary {
@@ -369,7 +370,6 @@
             }
         }
 
-        /* Стили для блоков с информацией (Обо мне, Цены) */
         .info-display-block {
             display: none;
             margin-top: 30px;
@@ -385,14 +385,10 @@
             display: block;
         }
 
-        /* 
-           Оранжевый цвет для жирных заголовков внутри информационных блоков. 
-           ИСПРАВЛЕНО: уменьшен отступ снизу
-        */
        .info-display-block strong {
             color: var(--orange-accent);
-            display: block;          /* Делает заголовок блоком (с новой строки) */
-            margin-bottom: 4px;      /* Маленький отступ снизу */
+            display: block;
+            margin-bottom: 4px;
             line-height: 1.2;
         }
         
@@ -436,7 +432,7 @@
             border-radius: 8px;
         }
 
-        /* --- СТИЛИ ДЛЯ КАРУСЕЛИ (СЛАЙДЕРА) --- */
+        /* --- СТИЛИ ДЛЯ КАРУСЕЛИ --- */
         .carousel-container {
             position: relative;
             overflow: hidden;
@@ -493,13 +489,8 @@
             background-color: var(--orange-accent);
         }
 
-        .carousel-prev {
-            left: 10px;
-        }
-
-        .carousel-next {
-            right: 10px;
-        }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
 
         @media (max-width: 600px) {
             .carousel-btn {
@@ -669,9 +660,8 @@
             }
 
             .home-content .slogan span {
+                 /* Сбрасываем margin на мобильном планшете, если нужно, но ширина остается */
                  margin-left: 5px;
-                 min-width: unset;
-                 text-align: center;
             }
 
             .profile-image-wrapper {
@@ -704,17 +694,67 @@
             }
         }
 
+        /* --- ОСНОВНЫЕ ИСПРАВЛЕНИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ --- */
         @media (max-width: 600px) {
             h2 {
                 font-size: 2em;
             }
 
+            /* 4. Исправление скролла: Меню стало выше, поэтому отодвигаем контент ниже */
+            body {
+                padding-top: 240px; /* Увеличили отступ сверху */
+            }
+
+            section {
+                scroll-margin-top: 240px; /* Якорь срабатывает выше, чтобы заголовок был виден */
+            }
+
+            /* 1. Исправление меню: Делаем сетку 2 колонки */
+            nav {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Две равные колонки */
+                gap: 8px;
+                padding: 10px;
+            }
+
+            nav button {
+                margin: 0;
+                width: 100%;
+                flex-basis: auto; /* Сбрасываем старые флекс настройки */
+                font-size: 0.9em; /* Чуть меньше шрифт, чтобы влезало */
+                white-space: normal; /* Разрешаем перенос текста на новую строку внутри кнопки */
+                line-height: 1.2;
+                padding: 10px 5px;
+            }
+
+            /* 2. Исправление прыгающего текста */
             .home-content h1 {
                 font-size: 2.2em;
             }
 
             .home-content .slogan {
                 font-size: 1.6em;
+            }
+            
+            .home-content .slogan span {
+                 text-align: center;
+                 min-width: 180px; /* Фиксированная ширина на мобильном */
+                 display: inline-block;
+                 margin: 0 5px;
+            }
+
+            /* 3. Исправление карусели: Кнопки и текст */
+            .carousel-slide p {
+                padding: 0 45px; /* Боковые отступы у текста, чтобы кнопки не наезжали */
+            }
+
+            .carousel-btn {
+                padding: 10px;
+                font-size: 1.2em;
+                width: 35px;
+                height: 35px;
+                /* Поднимаем кнопки выше, ближе к видео, а не к тексту */
+                top: 35%; 
             }
 
             .btn-primary {
@@ -726,15 +766,6 @@
                 width: 200px;
                 height: 200px;
                 border-width: 5px;
-            }
-
-            nav {
-                flex-wrap: wrap;
-            }
-
-            nav button {
-                flex-basis: calc(50% - 10px);
-                margin: 5px 0;
             }
 
             .modal-content {
