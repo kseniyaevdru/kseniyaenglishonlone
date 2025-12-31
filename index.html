@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Преподаю английский детям онлайн весело</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --blue-light: #007bff;
+            --blue-dark: #2c3e50;
+            --orange-accent: #ffa500;
+            --white-text: #ffffff;
+            --dark-text: #333333;
+            --light-bg: #e0f7fa;
+        }
+
+        /* Применяем шрифт ко всем текстовым элементам */
+        body, h1, h2, h3, h4, p, a, li, span, button, input, select, textarea, label, div, strong {
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--dark-text);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        header {
+            background-color: var(--blue-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav button {
+            background-color: var(--blue-light);
+            color: var(--white-text);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        nav button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        h2 {
+            color: var(--blue-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--orange-accent);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--blue-light), rgba(0, 0, 0, 0));
+            margin: 60px 0 40px 0;
+        }
+
+        #home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 20px 80px 20px;
+            text-align: left;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .home-content {
+            flex: 2;
+            padding-right: 40px;
+        }
+
+        .home-content h1 {
+            font-size: 3.5em;
+            color: var(--blue-dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .home-content .slogan {
+            font-size: 2.5em;
+            color: var(--blue-dark);
+            margin-top: -10px;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .home-content .slogan span {
+            font-weight: bold;
+            color: var(--orange-accent);
+            margin-left: 10px;
+            transition: color 0.5s ease;
+            display: inline-block;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .btn-primary {
+            background-color: var(--orange-accent);
+            color: var(--white-text);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            background-color: #e69500;
+            transform: translateY(-3px);
+        }
+
+        .profile-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-image-wrapper {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid var(--blue-light);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .profile-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .modal-content h3 {
+            color: var(--blue-dark);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .modal-content form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--dark-text);
+            text-align: left;
+        }
+
+        .required-star {
+            color: red;
+            font-weight: bold;
+            margin-left: 3px;
+        }
+
+        .modal-content form input,
+        .modal-content form select,
+        .modal-content form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        .modal-content form button {
+            background-color: var(--blue-light);
+            color: var(--white-text);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content form button:hover {
+            background-color: #0056b3;
+        }
+
+        #pricing .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        #pricing .button-group button {
+            background-color: var(--blue-light);
+            color: var(--white-text);
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        #pricing .button-group button:hover,
+        #pricing .button-group button.active {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .pricing-content {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .pricing-options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card {
+            background-color: var(--orange-accent);
+            color: var(--blue-dark);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: auto;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            font-weight: 800;
+        }
+
+        .pricing-card p {
+            font-size: 1.2em;
+            margin: 5px 0;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 600px) {
+            .pricing-card p {
+                white-space: normal;
+            }
+        }
+
+        /* Стили для блоков с информацией (Обо мне, Цены) */
+        .info-display-block {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .info-display-block.active {
+            display: block;
+        }
+
+        /* 
+           Оранжевый цвет для жирных заголовков внутри информационных блоков. 
+           ИСПРАВЛЕНО: уменьшен отступ снизу
+        */
+       .info-display-block strong {
+            color: var(--orange-accent);
+            display: block;          /* Делает заголовок блоком (с новой строки) */
+            margin-bottom: 4px;      /* Маленький отступ снизу */
+            line-height: 1.2;
+        }
+        
+        .info-display-block h3 {
+            color: var(--blue-dark);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .info-display-block p {
+            font-size: inherit; 
+            margin-bottom: 15px;
+        }
+
+        .info-display-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-display-block ul li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .info-display-block ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--orange-accent);
+            font-size: 1.5em;
+            top: -2px;
+            line-height: 1;
+        }
+        
+        .info-display-block img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* --- СТИЛИ ДЛЯ КАРУСЕЛИ (СЛАЙДЕРА) --- */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel-slide video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #000;
+            margin-bottom: 15px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background-color 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--orange-accent);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .carousel-btn {
+                padding: 10px;
+                font-size: 1.2em;
+                width: 40px;
+                height: 40px;
+            }
+        }
+        /* --- КОНЕЦ СТИЛЕЙ КАРУСЕЛИ --- */
+
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+       #about .about-text {
+            flex: 1;
+            text-align: justify;
+        }
+
+        #about .about-text p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+       #about .about-image-right {
+            flex: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            width: 100%;
+            order: 1;
+        }
+
+        #about .about-image-right img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: none;
+        }
+
+        #about .about-buttons-centered {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            order: 2;
+        }
+
+        #about .about-buttons-centered button {
+            background-color: var(--blue-light);
+            color: var(--white-text);
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+        }
+        
+        #about .about-buttons-centered button.active {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        #about .about-buttons-centered button:hover {
+            background-color: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        #reviews .review-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            align-items: start;
+        }
+
+        #reviews .review-card {
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            text-align: center;
+            min-height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+       #reviews .review-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: none;
+        }
+
+        #contacts .contact-info {
+            text-align: center;
+        }
+
+        #contacts .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        #contacts .social-links a {
+            color: var(--blue-dark);
+            font-size: 3em;
+            transition: color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        #contacts .social-links a:hover {
+            transform: translateY(-5px);
+        }
+
+        #contacts .social-links a.telegram:hover { color: #0088cc; }
+        #contacts .social-links a.whatsapp:hover { color: #25D366; }
+        #contacts .social-links a.instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #contacts .social-links a.vk:hover { color: #4C75A3; }
+        #contacts .social-links a.email:hover { color: #D44638; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--blue-dark);
+            color: var(--white-text);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            #home {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 40px;
+            }
+
+            .home-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .home-content h1 {
+                font-size: 2.8em;
+            }
+
+            .home-content .slogan {
+                font-size: 2em;
+                text-align: center;
+            }
+
+            .home-content .slogan span {
+                 margin-left: 5px;
+                 min-width: unset;
+                 text-align: center;
+            }
+
+            .profile-image-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+
+            nav button {
+                font-size: 1em;
+                padding: 8px 15px;
+                margin: 5px;
+            }
+
+            #about .about-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #about .about-image-right {
+                max-width: 100%;
+                order: -1;
+            }
+
+            #about .about-buttons-centered {
+                margin-top: 20px;
+            }
+            
+            .pricing-card {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2em;
+            }
+
+            .home-content h1 {
+                font-size: 2.2em;
+            }
+
+            .home-content .slogan {
+                font-size: 1.6em;
+            }
+
+            .btn-primary {
+                font-size: 1.1em;
+                padding: 12px 20px;
+            }
+
+            .profile-image-wrapper {
+                width: 200px;
+                height: 200px;
+                border-width: 5px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            nav button {
+                flex-basis: calc(50% - 10px);
+                margin: 5px 0;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .social-links a {
+                font-size: 2.5em;
+                margin: 0 15px;
+            }
+
+            #reviews .review-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <button onclick="scrollToSection('home')">Главная</button>
+            <button onclick="scrollToSection('about')">Обо мне</button>
+            <button onclick="scrollToSection('reviews')">Отзывы</button>
+            <button onclick="scrollToSection('pricing')">Стоимость занятий</button>
+            <button onclick="scrollToSection('schedule')">Расписание занятий</button>
+            <button onclick="scrollToSection('contacts')">Мои контакты</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Главная страница -->
+        <section id="home">
+            <div class="home-content">
+                <h1>КСЕНИЯ ЕВДОКИМОВА <br> ПРЕПОДАВАТЕЛЬ АНГЛИЙСКОГО ОНЛАЙН</h1>
+                <p class="slogan">ПРЕПОДАЮ АНГЛИЙСКИЙ ДЕТЯМ ОНЛАЙН <span id="dynamic-word">ВЕСЕЛО</span></p>
+                <button class="btn-primary" onclick="openBookingModal()">Записаться на занятие</button>
+            </div>
+            <div class="profile-image-container">
+                <div class="profile-image-wrapper">
+                    <img src="images/my-photo.jpg" alt="Мое фото">
+                </div>
+            </div>
+        </section>
+
+        <!-- Обо мне -->
+        <section id="about">
+            <h2>Обо мне</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Всем привет! Меня зовут Ксения. И я искренне верю, что учить английский можно с радостью и огоньком в глазах! 
+                    </p>
+                    <p>
+                        Для меня английский — это не просто набор правил. Это живой язык, ключ к новым мирам, друзьям и приключениям. И свою миссию я вижу в том, чтобы передать эту уверенность и интерес каждому ребенку.
+                    </p>
+                    <p>
+                        Почему я это люблю? Потому что нет ничего круче, чем видеть, как застенчивый ребенок раскрывается и начинает уверенно строить свои первые фразы, а потом с гордостью рассказывает о своих успехах. Для меня каждый урок — это маленькое приключение, где мы вместе открываем новые горизонты через игры, живые диалоги и темы, которые по-настоящему увлекают.
+                    </p>
+                </div>
+                <div class="about-image-right">
+                    <img src="images/my-photo-about.png" alt="Мое фото в секции Обо мне">
+                </div>
+                <div class="about-buttons-centered" id="about-buttons-container">
+                    <button data-about-type="why-me" onclick="toggleAboutInfo('why-me')">Почему стоит выбрать именно меня</button>
+                    <button data-about-type="education" onclick="toggleAboutInfo('education')">Образование</button>
+                </div>
+            </div>
+            
+            <div id="about-info-display" class="info-display-block">
+                <!-- Контент загружается через JS -->
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Отзывы -->
+        <section id="reviews">
+            <h2>Отзывы</h2>
+            <div class="review-gallery">
+                <div class="review-card">
+                    <img src="images/review1.png" alt="Отзыв 1">
+                </div>
+                <div class="review-card">
+                    <img src="images/review2.png" alt="Отзыв 2">
+                </div>
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Стоимость занятий -->
+        <section id="pricing">
+            <h2>Стоимость занятий</h2>
+            <div class="button-group" id="lesson-type-buttons">
+                <button class="active" data-type="individual">Индивидуальные занятия</button>
+                <button data-type="pair">Парные занятия</button>
+                <button data-type="group">Групповые занятия</button>
+            </div>
+
+            <div class="pricing-content" id="pricing-info">
+                <!-- Контент цен (меняется JS) -->
+            </div>
+
+            <div class="button-group lesson-details-buttons">
+                <button data-lesson-detail="how-lessons-work">Как проходят уроки</button>
+                <button data-lesson-detail="example-lessons">Примеры уроков</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px; margin-bottom: 20px;">
+                <button class="btn-primary" onclick="openBookingModal()">Записаться</button>
+            </div>
+
+            <div id="lesson-info-display" class="info-display-block">
+                <!-- Информация о уроках будет здесь -->
+            </div>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Расписание занятий -->
+        <section id="schedule">
+            <h2>Расписание занятий</h2>
+            <p style="text-align: center;">Здесь будет информация о расписании занятий, свободном времени и форме записи.</p>
+        </section>
+
+        <hr class="section-divider">
+
+        <!-- Мои контакты -->
+        <section id="contacts">
+            <h2>Мои контакты</h2>
+            <div class="social-links">
+                <a href="https://t.me/kseniyaenglishonline" target="_blank" class="telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://wa.me/79010303815" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/kseniyaenglishonline" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://vk.com/kseniyaenglishonline" target="_blank" class="vk"><i class="fab fa-vk"></i></a>
+                <a href="mailto:ksengonline@mail.ru" class="email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Ксения Евдокимова. Все права защищены.</p>
+    </footer>
+
+    <!-- Модальное окно для записи -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeBookingModal()">&times;</span>
+            <h3>Записать ребенка на учебный год</h3>
+            <form>
+                <!-- ФИО родителя -->
+                <label for="parentFio">ФИО <span class="required-star">*</span></label>
+                <input type="text" id="parentFio" name="parentFio" required placeholder="Ваше имя">
+
+                <!-- Телефон -->
+                <label for="phone">Телефон <span class="required-star">*</span></label>
+                <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 999-99-99">
+
+                <!-- E-mail -->
+                <label for="email">E-mail <span class="required-star">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+
+                <!-- ФИО ребенка -->
+                <label for="childFio">ФИО ребенка <span class="required-star">*</span></label>
+                <input type="text" id="childFio" name="childFio" required placeholder="Имя ребенка">
+
+                <!-- Дата рождения -->
+                <label for="childDob">Дата рождения <span class="required-star">*</span></label>
+                <input type="date" id="childDob" name="childDob" required>
+
+                <!-- Опыт -->
+                <label for="experience">Изучал ли ранее ребенок английский? <span class="required-star">*</span></label>
+                <input type="text" id="experience" name="experience" required placeholder="Да/Нет, в школе/с репетитором">
+
+                <!-- Выпадающий список -->
+                <label for="lessonType">Выберите подходящий вариант: <span class="required-star">*</span></label>
+                <select id="lessonType" name="lessonType" required>
+                    <option value="" disabled selected>-- Нажмите, чтобы выбрать --</option>
+                    <option value="individual">Индивидуальные занятия</option>
+                    <option value="pair">Парные занятия</option>
+                    <option value="group">Групповые занятия</option>
+                </select>
+
+                <button type="submit">Записаться</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- ВАШИ ДАННЫЕ ДЛЯ TELEGRAM ---
+        const TOKEN = "8413222479:AAGvUuE6_djnFic_S47X5t0LIKP06oY_NAw";
+        const CHAT_ID = "8316064903"; 
+        
+        const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+        // Скрипт отправки формы
+        document.querySelector('#bookingModal form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let message = `<b>Новая заявка с сайта!</b>\n\n`;
+            message += `<b>Родитель:</b> ${this.parentFio.value}\n`;
+            message += `<b>Телефон:</b> ${this.phone.value}\n`;
+            message += `<b>Email:</b> ${this.email.value}\n`;
+            message += `<b>Ребенок:</b> ${this.childFio.value}\n`;
+            message += `<b>Дата рождения:</b> ${this.childDob.value}\n`;
+            message += `<b>Опыт:</b> ${this.experience.value}\n`;
+            
+            const selectElement = this.lessonType;
+            const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
+            message += `<b>Тип занятий:</b> ${selectedOptionText}`;
+
+            fetch(URI_API, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    parse_mode: 'html',
+                    text: message
+                })
+            })
+            .then(res => {
+                this.reset();
+                alert('Ваша заявка зарегистрирована. Мы свяжемся с вами в ближайшее время.');
+                closeBookingModal();
+            })
+            .catch(err => {
+                console.warn(err);
+                alert('Ошибка отправки. Проверьте правильность токена бота.');
+            });
+        });
+
+        // Остальные скрипты сайта
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const dynamicWord = document.getElementById('dynamic-word');
+        const words = ['ВЕСЕЛО', 'ИНТЕРЕСНО'];
+        let wordIndex = 0;
+
+        function changeWord() {
+            dynamicWord.textContent = words[wordIndex];
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+
+        setInterval(changeWord, 2000);
+
+        const bookingModal = document.getElementById('bookingModal');
+        function openBookingModal() { bookingModal.style.display = 'flex'; }
+        function closeBookingModal() { bookingModal.style.display = 'none'; }
+
+        window.onclick = function(event) {
+            if (event.target == bookingModal) closeBookingModal();
+        }
+
+        // --- ЛОГИКА ДЛЯ СТОИМОСТИ ---
+        const pricingInfo = document.getElementById('pricing-info');
+        const lessonTypeButtons = document.getElementById('lesson-type-buttons');
+        const lessonInfoDisplay = document.getElementById('lesson-info-display');
+
+        const pricingData = {
+            individual: `
+                <div class="pricing-options">
+                    <div class="pricing-card"><h4>Абонементы на 45 минут</h4><p>4 урока – 6000 рублей (1500р за занятие)</p><p>8 уроков – 11200 рублей (1400р за занятие)</p><p>16 уроков – 20800 рублей (1300р за занятие)</p><p>24 урока – 28800 рублей (1200р за занятие)</p></div>
+                    <div class="pricing-card" style="margin-top: 20px;"><h4>Абонементы на 60 минут</h4><p>4 урока – 7200 рублей (1800р за занятие)</p><p>8 уроков – 13600 рублей (1700р за занятие)</p><p>16 уроков – 25600 рублей (1600р за занятие)</p><p>24 урока – 36000 рублей (1500р за занятие)</p></div>
+                </div>
+            `,
+            pair: `
+                <div class="pricing-options">
+                    <div class="pricing-card"><h4>Абонементы на 60 минут</h4><p>4 урока – 5200 рублей (1300р за занятие с человека)</p><p>8 уроков – 9600 рублей (1200р за занятие с человека)</p><p>16 уроков – 17600 рублей (1100р за занятие с человека)</p><p>24 урока – 24000 рублей (1000р за занятие с человека)</p></div>
+                </div>
+            `,
+            group: `
+                <div class="pricing-options">
+                    <div class="pricing-card"><h4>Абонементы на 60 минут</h4><p>8 уроков – 6400 рублей (800 за занятие)</p><p>16 уроков – 12000 рублей (750 за занятие)</p><p>24 урока – 16800 рублей (700 за занятие)</p></div>
+                </div>
+            `
+        };
+
+        const lessonDetailsData = {
+            "how-lessons-work": `
+                <h3>Как проходят наши уроки? Рассказываю о главных принципах моей работы! </h3>
+                <ul>
+                    <li>Играем и учимся: Для детей 6-10 лет основа урока — это игра. Через интерактивные квизы, песни и мультфильмы лексика и грамматика усваиваются сами собой.</li>
+                    <li>Говорим с первого занятия: Минимум скучных упражнений из учебника, максимум живой практики. Создаю комфортную среду, где не страшно ошибаться.</li>
+                    <li>Использую современные технологии: Онлайн-доски, обучающие платформы (например, Wordwall, Kahoot), интересные видео — все, чтобы удержать внимание digital-поколения.</li>
+                    <li>Выстраиваю индивидуальную траекторию: Узнаю интересы ребенка (динозавры, спорт, Minecraft) и вплетаю их в уроки. Это делает обучение по-настоящему личным и эффективным.</li>
+                </ul>
+                <p style="text-align: center; font-weight: bold; font-size: 1.2em; color: var(--blue-dark);">Результат — ребенок не просто знает правила, он УМЕЕТ использовать язык!</p>
+            `,
+            // HTML-код для карусели
+            "example-lessons": `
+                <h3>Примеры уроков</h3>
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Слайд 1 -->
+                        <div class="carousel-slide">
+                            <video controls poster="images/poster1.jpg">
+                                <source src="videos/lesson1.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                            <p><strong>Урок 1:</strong> <p>Первые диалоги: как мы снимаем языковой барьер с самого начала!<p>
+
+Посмотрите, с какой радостью мои ученицы начинают урок! Это не просто «привет», это наша традиционная разминка-знакомство</p>
+                        </div>
+                        <!-- Слайд 2 -->
+                        <div class="carousel-slide">
+                            <video controls poster="images/poster2.jpg">
+                                <source src="videos/lesson2.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                            <p><strong>Урок 2:</strong> <p>От песни к диалогу: как мы учим детей не просто слушать, а ГОВОРИТЬ<p>
+
+После разбора песни самое важное — сделать следующий шаг. Мы не останавливаемся на понимании, мы берем ее грамматические "кирпичики" и начинаем строить из них свою речь!</p>
+                        </div>
+                        <!-- Слайд 3 -->
+                        <div class="carousel-slide">
+                            <video controls poster="images/poster3.jpg">
+                                <source src="videos/lesson3.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                            <p><strong>Урок 3:</strong> <p>«Чье это?» — самый детский и самый полезный вопрос в английском!<p>
+
+Работа с притяжательным падежом и вопросом Whose? может быть не скучным упражнением, а веселой игрой в детективов. Смотрите, как мы с моей ученицей Верой выясняем, кому принадлежат игрушки!</p>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
+                    <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
+                </div>
+            `
+        };
+
+        function showPricing(type) {
+            pricingInfo.innerHTML = pricingData[type];
+            Array.from(lessonTypeButtons.children).forEach(button => button.classList.remove('active'));
+            document.querySelector(`#lesson-type-buttons button[data-type="${type}"]`).classList.add('active');
+            lessonInfoDisplay.classList.remove('active');
+            Array.from(document.querySelectorAll('.lesson-details-buttons button')).forEach(button => button.classList.remove('active'));
+        }
+
+        // Логика карусели
+        let currentSlide = 0;
+
+        function moveCarousel(direction) {
+            const track = document.getElementById('carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const totalSlides = slides.length;
+
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+
+            const offset = -currentSlide * 100;
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
+        function toggleLessonDetails(detailType) {
+            const currentButton = document.querySelector(`.lesson-details-buttons button[data-lesson-detail="${detailType}"]`);
+            const isAlreadyActive = currentButton.classList.contains('active');
+
+            Array.from(document.querySelectorAll('.lesson-details-buttons button')).forEach(button => button.classList.remove('active'));
+
+            if (isAlreadyActive) {
+                lessonInfoDisplay.classList.remove('active');
+            } else {
+                lessonInfoDisplay.innerHTML = lessonDetailsData[detailType];
+                lessonInfoDisplay.classList.add('active');
+                currentButton.classList.add('active');
+
+                // Если открыли примеры уроков, инициализируем кнопки карусели
+                if (detailType === 'example-lessons') {
+                    currentSlide = 0; // Сброс на первый слайд
+                    document.getElementById('prevBtn').addEventListener('click', () => moveCarousel(-1));
+                    document.getElementById('nextBtn').addEventListener('click', () => moveCarousel(1));
+                }
+            }
+        }
+
+        lessonTypeButtons.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                showPricing(event.target.dataset.type);
+            }
+        });
+
+        document.querySelector('.lesson-details-buttons').addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                toggleLessonDetails(event.target.dataset.lessonDetail);
+            }
+        });
+
+        // --- ЛОГИКА ДЛЯ РАЗДЕЛА "ОБО МНЕ" (ПЕРЕКЛЮЧЕНИЕ) ---
+        const aboutInfoDisplay = document.getElementById('about-info-display');
+        const aboutButtonsContainer = document.getElementById('about-buttons-container');
+
+        const aboutData = {
+            "why-me": `
+                <h3>Почему родители останавливают выбор на мне? Давайте честно.</h3>
+                
+                <p><strong>1. Я даю не просто английский, а «английский для жизни».</strong>
+                Моя цель — чтобы ребёнок мог использовать язык: рассказать о своём дне, поддержать игру, понять песню. Поэтому на уроках мы не зубрим, а общаемся на темы, которые ему близки.</p>
+                
+                <p><strong>2. Я создаю пространство без страха.</strong>
+                «Я боюсь ошибиться» — главный враг речи. На моих уроках ошибки — это шаги к цели. Я хвалю за попытку, и благодаря этому даже самые стеснительные начинают говорить.</p>
+                
+                <p><strong>3. Я знаю, как удержать внимание digital-поколения.</strong>
+                Я использую десятки интерактивных форматов: от дизайна комнат в Genially до игровых квизов и челленджей. Ребёнок не успевает заскучать, потому что формат меняется, а цель одна — заговорить.</p>
+                
+                <p><strong>4. Вы видите прогресс.</strong>
+                После каждого урока я даю обратную связь: что получилось, над чем работаем. Вы не гадаете, а видите, как шаг за шагом ребёнок начинает думать и говорить по-английски.</p>
+                
+                <p>В итоге вы выбираете не репетитора, а союзника в одном из самых важных вложений — в развитие вашего ребенка.</p>
+            `,
+            "education": `
+                <h3>Мое образование</h3>
+                <img src="images/my-diploma.png" alt="Диплом преподавателя" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin: 0 auto 20px auto; display: block;">
+                <p style="text-align: center;">
+                    Ивановский государственный университет (2020–2024) .<br>
+                    Бакалавр. Педагогическое образование (с двумя профилями подготовки).<br>
+                    Диплом с отличием.
+                </p>
+            `
+        };
+
+        function toggleAboutInfo(type) {
+            const currentButton = document.querySelector(`#about-buttons-container button[data-about-type="${type}"]`);
+            const isAlreadyActive = currentButton.classList.contains('active');
+
+            Array.from(aboutButtonsContainer.children).forEach(button => button.classList.remove('active'));
+
+            if (isAlreadyActive) {
+                aboutInfoDisplay.classList.remove('active');
+            } else {
+                aboutInfoDisplay.innerHTML = aboutData[type];
+                aboutInfoDisplay.classList.add('active');
+                currentButton.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPricing('individual');
+        });
+    </script>
+</body>
+</html>
