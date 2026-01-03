@@ -784,6 +784,7 @@
         }
     </style>
 	<link rel="icon" type="image/png" href="images/icon.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -908,49 +909,46 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Ксения Евдокимова. Все права защищены.</p>
-    </footer>
+   <footer>
+    <!-- Блок с темным фоном -->
+    <div class="footer-content" style="padding: 50px 20px; background-color: #2c3e50; text-align: center; color: #ffffff; font-family: sans-serif;">
+        
+        <!-- Личные данные (белый текст) -->
+        <h4 style="margin: 0 0 10px; color: #ffffff; font-size: 18px;">Ксения Евдокимова</h4>
+        <p style="margin: 0 0 5px; color: #ecf0f1; font-size: 14px;">
+            Преподаватель английского языка
+        </p>
+        <p style="margin: 0 0 15px; color: #bdc3c7; font-size: 12px;">
+            Самозанятый, ИНН: 370603780850
+        </p>
 
-    <!-- Модальное окно для записи -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeBookingModal()">&times;</span>
-            <h3>Записать ребенка на учебный год</h3>
-            <form>
-                <!-- ФИО родителя -->
-                <label for="parentFio">ФИО <span class="required-star">*</span></label>
-                <input type="text" id="parentFio" name="parentFio" required placeholder="Ваше имя">
+        <!-- Email (белый с подчеркиванием) -->
+        <p style="margin: 0 0 30px;">
+             <a href="mailto:ksengonline@mail.ru" style="color: #ffffff; text-decoration: underline; font-size: 16px;">
+                ksengonline@mail.ru
+             </a>
+        </p>
 
-                <!-- Телефон -->
-                <label for="phone">Телефон <span class="required-star">*</span></label>
-                <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 999-99-99">
+        <!-- Ссылки на документы (светло-серые, при наведении белые) -->
+        <div class="legal-links" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+            
+            <a href="offer.pdf" target="_blank" style="text-decoration: none; color: #ecf0f1; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-file-signature"></i>
+                Договор оферты
+            </a>
 
-                <!-- E-mail -->
-                <label for="email">E-mail <span class="required-star">*</span></label>
-                <input type="email" id="email" name="email" required placeholder="example@mail.ru">
+            <a href="policy.pdf" target="_blank" style="text-decoration: none; color: #ecf0f1; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-shield-halved"></i>
+                Политика конфиденциальности
+            </a>
 
-                <!-- ФИО ребенка -->
-                <label for="childFio">ФИО ребенка <span class="required-star">*</span></label>
-                <input type="text" id="childFio" name="childFio" required placeholder="Имя ребенка">
+        </div>
 
-                <!-- Дата рождения -->
-                <label for="childDob">Дата рождения <span class="required-star">*</span></label>
-                <input type="date" id="childDob" name="childDob" required>
-
-                <!-- Опыт -->
-                <label for="experience">Изучал ли ранее ребенок английский? <span class="required-star">*</span></label>
-                <input type="text" id="experience" name="experience" required placeholder="Да/Нет, в школе/с репетитором">
-
-                <!-- Выпадающий список -->
-                <label for="lessonType">Выберите подходящий вариант: <span class="required-star">*</span></label>
-                <select id="lessonType" name="lessonType" required>
-                    <option value="" disabled selected>-- Нажмите, чтобы выбрать --</option>
-                    <option value="individual">Индивидуальные занятия</option>
-                    <option value="pair">Парные занятия</option>
-                    <option value="group">Групповые занятия</option>
-                </select>
-
+        <p style="margin-top: 40px; font-size: 12px; color: #95a5a6;">
+            © 2026 
+        </p>
+    </div>
+</footer>
                 <button type="submit">Записаться</button>
             </form>
         </div>
